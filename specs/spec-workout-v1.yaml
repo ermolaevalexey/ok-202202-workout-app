@@ -564,6 +564,27 @@ components:
         - horizontalBar
         - bars
 
+
+    Permissions:
+      type: string
+      description: Доступы для клиента для операций над сущностью
+      enum:
+        - read
+        - update
+        - delete
+        - makeVisiblePublic
+        - makeVisibleOwn
+        - makeVisibleGroup
+
+
+    SearchProgramsFilter:
+      type: object
+      description: Набор фильтров для поиска
+      properties:
+        searchString:
+          type: string
+          description: Поисковая строка, которая будет искаться в программах
+
     CreateProgramRequest:
       allOf:
         - $ref: '#/components/schemas/IRequest'
@@ -588,6 +609,13 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     UpdateProgramRequest:
       allOf:
@@ -610,6 +638,13 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
 
     DeleteProgramRequest:
@@ -632,16 +667,35 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     SearchProgramRequest:
       allOf:
         - $ref: '#/components/schemas/IRequest'
         - type: object
+          properties:
+            adFilter:
+              $ref: '#/components/schemas/SearchProgramsFilter'
 
     SearchProgramResponse:
       allOf:
         - $ref: '#/components/schemas/IResponse'
         - type: object
+          description: Список найденных объектов
+          properties:
+            data:
+              type: array
+              items:
+                allOf:
+                  - $ref: '#/components/schemas/EntityId'
+                  - $ref: '#/components/schemas/Program'
+
 
     ReadProgramRequest:
       allOf:
@@ -663,6 +717,13 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     CreateWorkoutRequest:
       allOf:
@@ -693,6 +754,13 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     UpdateWorkoutRequest:
       allOf:
@@ -720,6 +788,13 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     DeleteWorkoutRequest:
       allOf:
@@ -739,6 +814,13 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     ReadWorkoutRequest:
       allOf:
@@ -758,6 +840,13 @@ components:
               allOf:
                 - $ref: '#/components/schemas/EntityId'
                 - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     CreateFeedbackRequest:
       allOf:
@@ -793,6 +882,12 @@ components:
                   oneOf:
                     - $ref: '#/components/schemas/ProgramFeedback'
                     - $ref: '#/components/schemas/WorkoutFeedback'
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
 
     ReadFeedbackRequest:
       allOf:
@@ -828,6 +923,11 @@ components:
                         $ref: '#/components/schemas/EntityId'
                       userId:
                         $ref: '#/components/schemas/EntityId'
+                      permissions:
+                        type: array
+                        uniqueItems: true
+                        items:
+                          $ref: '#/components/schemas/Permissions'
                   - type: object
                     allOf:
                       - $ref: '#/components/schemas/EntityId'
@@ -876,6 +976,11 @@ components:
                         $ref: '#/components/schemas/EntityId'
                       userId:
                         $ref: '#/components/schemas/EntityId'
+                      permissions:
+                        type: array
+                        uniqueItems: true
+                        items:
+                          $ref: '#/components/schemas/Permissions'
                   - type: object
                     allOf:
                       - $ref: '#/components/schemas/EntityId'
@@ -919,6 +1024,11 @@ components:
                         $ref: '#/components/schemas/EntityId'
                       userId:
                         $ref: '#/components/schemas/EntityId'
+                      permissions:
+                        type: array
+                        uniqueItems: true
+                        items:
+                          $ref: '#/components/schemas/Permissions'
                   - type: object
                     allOf:
                       - $ref: '#/components/schemas/EntityId'
@@ -926,3 +1036,30 @@ components:
                         oneOf:
                           - $ref: '#/components/schemas/ProgramFeedback'
                           - $ref: '#/components/schemas/WorkoutFeedback'
+
+    # STUBS ======================
+    ProgramRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/ProgramDebug'
+
+    ProgramDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/ProgramRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/ProgramRequestDebugStubs'
+
+    ProgramRequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+        - badTitle
+        - badDescription
+        - cannotDelete
+        - badSearchString
