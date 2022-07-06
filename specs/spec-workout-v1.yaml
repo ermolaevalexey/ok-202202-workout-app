@@ -1,0 +1,1065 @@
+openapi: 3.0.4
+info:
+  title: Workout App
+  description: 'Api для взаимодействия с бэкендом Воркаут Приложения'
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: workout
+    description: Тренировка
+paths:
+  /program/create:
+    post:
+      tags:
+        - program
+      summary: Создание программы
+      operationId: createProgream
+      requestBody:
+        description: Запрос на создание программы
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProgramRequest'
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProgramResponse'
+
+  /program/search:
+    post:
+      tags:
+        - program
+      summary: Поиск программ
+      operationId: searchProgram
+      requestBody:
+        description: Объект запроса поиска программм
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchProgramRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchProgramResponse'
+
+  /program/read:
+    post:
+      tags:
+        - program
+      summary: Поиск программ
+      operationId: readProgram
+      requestBody:
+        description: Объект запроса для просмотра программы
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadProgramRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadProgramResponse'
+
+  /program/update:
+    post:
+      tags:
+        - program
+      summary: Обновление информации в программе
+      operationId: updateProgram
+      requestBody:
+        description: Объект запроса обновления информации программы
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProgramRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateProgramResponse'
+
+  /program/delete:
+    post:
+      tags:
+        - program
+      summary: Обновление информации в программе
+      operationId: deleteProgram
+      requestBody:
+        description: Объект запроса обновления информации программы
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProgramRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteProgramResponse'
+
+  /workout/create:
+    post:
+      tags:
+        - workout
+      summary: Создание новой тренировки в программе
+      operationId: createWorkout
+      requestBody:
+        description: Объект запроса создания новой тренировки
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkoutRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateWorkoutResponse'
+
+  /workout/read:
+    post:
+      tags:
+        - workout
+      summary: Получение информации о тренировке
+      operationId: readWorkout
+      requestBody:
+        description: Объект запроса на получение тренировки
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadWorkoutRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadWorkoutResponse'
+
+  /workout/update:
+    post:
+      tags:
+        - workout
+      summary: Обновление существующей тренировки в программе
+      operationId: updateWorkout
+      requestBody:
+        description: Объект запроса обновления информации в существующей тренировке
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkoutRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateWorkoutResponse'
+
+  /workout/delete:
+    post:
+      tags:
+        - workout
+      summary: Удалить тренировку
+      operationId: deleteWorkout
+      requestBody:
+        description: Объект запроса на удаление существующей тренировки
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteWorkoutRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteWorkoutResponse'
+
+  /feedback/create:
+    post:
+      tags:
+        - feedback
+      summary: Создать отзыв
+      operationId: createFeedback
+      requestBody:
+        description: Объект запроса на создание фидбэка для програмы или тренировки
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeedbackRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateFeedbackResponse'
+
+  /feedback/update:
+    post:
+      tags:
+        - feedback
+      summary: Редактировать отзыв
+      operationId: updateFeedback
+      requestBody:
+        description: Объект запроса на создание фидбэка для програмы или тренировки
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFeedbackRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateFeedbackResponse'
+
+  /feedback/read:
+    post:
+      tags:
+        - feedback
+      summary: Просмотреть отзывы
+      operationId: readFeedback
+      requestBody:
+        description: Объект запроса на получение отзывов о программе или тренировке
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadFeedbackRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadFeedbackResponse'
+
+  /feedback/delete:
+    post:
+      tags:
+        - feedback
+      summary: Удалить отзыв
+      operationId: deleteFeedback
+      requestBody:
+        description: Объект запроса на удаление отзыва
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteFeedbackRequest'
+        required: true
+      responses:
+        200:
+          description: all responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteFeedbackResponse'
+
+components:
+  schemas:
+
+    ProgramRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дискриминатор для вычисления типа запроса
+          example: createProgram
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+      discriminator:
+        propertyName: requestType
+        mapping:
+          createProgram: '#/components/schemas/CreateProgramRequest'
+          readProgram: '#/components/schemas/ReadProgramRequest'
+          updateProgram: '#/components/schemas/UpdateProgramRequest'
+          deleteProgram: '#/components/schemas/DeleteProgramRequest'
+          searchProgram: '#/components/schemas/SearchProgramRequest'
+          createWorkout: '#/components/schemas/CreateWorkoutRequest'
+          readWorkout: '#/components/schemas/ReadWorkoutRequest'
+          updateWorkout: '#/components/schemas/UpdateWorkoutRequest'
+          deleteWorkout: '#/components/schemas/DeleteWorkoutRequest'
+          searchWorkout: '#/components/schemas/SearchWorkoutRequest'
+          createFeedback: '#/components/schemas/CreateFeedbackRequest'
+          readFeedback: '#/components/schemas/ReadFeedbackRequest'
+          updateFeedback: '#/components/schemas/UpdateWorkoutRequest'
+          deleteFeedback: '#/components/schemas/DeleteFeedbackRequest'
+          searchFeedback: '#/components/schemas/SearchFeedbackRequest'
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дискриминатор для вычисления типа запроса
+          example: createProgram
+        requestId:
+          type: string
+          description: Идентификатор  для отладки
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      discriminator:
+        propertyName: responseType
+        mapping:
+          createProgram: '#/components/schemas/CreateProgramResponse'
+          readProgram: '#/components/schemas/ReadProgramResponse'
+          updateProgram: '#/components/schemas/UpdateProgramResponse'
+          deleteProgram: '#/components/schemas/DeleteProgramResponse'
+          searchProgram: '#/components/schemas/SearchProgramResponse'
+          createWorkout: '#/components/schemas/CreateWorkoutResponse'
+          readWorkout: '#/components/schemas/ReadWorkoutRequest'
+          updateWorkout: '#/components/schemas/UpdateWorkoutResponse'
+          deleteWorkout: '#/components/schemas/DeleteWorkoutResponse'
+          searchWorkout: '#/components/schemas/SearchWorkoutResponse'
+          createFeedback: '#/components/schemas/CreateFeedbackResponse'
+          readFeedback: '#/components/schemas/ReadFeedbackResponse'
+          updateFeedback: '#/components/schemas/UpdateWorkoutResponse'
+          deleteFeedback: '#/components/schemas/DeleteFeedbackResponse'
+          searchFeedback: '#/components/schemas/SearchFeedbackResponse'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        group:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+
+    ResponseResult:
+      type: string
+      enum:
+        - success
+        - error
+
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: идентификатор сущности
+
+    BaseProgramRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Название программы
+        description:
+          type: string
+          description: Описание программы
+        difficulty:
+          oneOf:
+            - $ref: '#/components/schemas/Difficulty'
+          description: Уровень сложности
+        equipment:
+          type: array
+          items:
+            $ref: '#/components/schemas/Equipment'
+          description: Список оборудования
+        workouts:
+          type: array
+          items:
+            type: string
+          description: Список id тренировок
+
+    BaseWorkoutRequest:
+      type: object
+      required:
+        - title
+        - description
+        - equipment
+      properties:
+        title:
+          type: string
+          description: Название тренировки
+        description:
+          type: string
+          description: Описание тренировки
+        equipment:
+          type: array
+          description: Оборудование для тренировки
+          items:
+            $ref: '#/components/schemas/Equipment'
+
+    Program:
+      allOf:
+        - $ref: '#/components/schemas/BaseProgramRequest'
+        - type: object
+          properties:
+            workouts:
+              type: array
+              items:
+                $ref: '#/components/schemas/Workout'
+              description: Состав тренировок
+            rating:
+              type: integer
+              description: Общая оценка программы от всех пользователей, кто пометил ее выполненной
+            feedback:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProgramFeedback'
+              description: Отзывы пользователей
+
+    Workout:
+      allOf:
+        - $ref: '#/components/schemas/BaseWorkoutRequest'
+        - type: object
+          properties:
+            content:
+              type: object
+              description: Содержание тренировки
+              allOf:
+                - $ref: '#/components/schemas/WorkoutContent'
+            feedback:
+              type: array
+              description: Отзывы о тренировке
+              items:
+                $ref: '#/components/schemas/WorkoutFeedback'
+
+    WorkoutContent:
+      type: object
+      properties:
+        video:
+          type: string
+          description: Ссылка на видеоматериал тренировки
+        steps:
+          type: array
+          description: Пошаговое описание тренировки
+          items:
+            type: string
+
+    WorkoutFeedback:
+      type: object
+      properties:
+        isFinished:
+          type: boolean
+          description: выполнена/не выполнена - проставляется пользователем самостоятельно
+        review:
+          oneOf:
+            - $ref: '#/components/schemas/Review'
+          description: отзыв пользователя о тренировке
+
+    ProgramFeedback:
+      type: object
+      properties:
+        isStarted:
+          type: boolean
+          description: начата/не начата (проставляется автоматически при включении первой тренировки из программы)
+        isFinished:
+          type: boolean
+          description: выполнена/не выполнена (проставляется автоматически по завершении всех тренировок в программе)
+        progress:
+          type: integer
+          description: процент выполнения программы
+        rating:
+          type: integer
+          description: оценка пользователя
+        review:
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/Review'
+          description: отзыв пользователя
+
+    FeedbackType:
+      type: string
+      enum:
+        - program
+        - workout
+
+    Review:
+      type: object
+      required:
+        - stats
+      properties:
+        comment:
+          type: string
+          description: текстовый комментарий
+        photos:
+          type: object
+          description: фотографии до/после
+          properties:
+            content:
+              type: array
+              items:
+                type: string
+              description: лист ссылок на фото
+            isPrivate:
+              type: boolean
+              description: фото скрыты из общего доступа
+        stats:
+          type: object
+          description: Оценка пользователя по параметрам
+          properties:
+            difficulty:
+              type: integer
+              description: сложность от 1 до 5
+            intensivity:
+              type: integer
+              description: интенесивность от 1 до 5
+            interestingness:
+              type: integer
+              description: интересность от 1 до 5
+
+
+    Difficulty:
+      type: string
+      enum:
+        - beginner
+        - medium
+        - advanced
+
+    Equipment:
+      type: string
+      enum:
+        - ownWeight
+        - dumbbells
+        - jumpingRope
+        - horizontalBar
+        - bars
+
+
+    Permissions:
+      type: string
+      description: Доступы для клиента для операций над сущностью
+      enum:
+        - read
+        - update
+        - delete
+        - makeVisiblePublic
+        - makeVisibleOwn
+        - makeVisibleGroup
+
+
+    SearchProgramsFilter:
+      type: object
+      description: Набор фильтров для поиска
+      properties:
+        searchString:
+          type: string
+          description: Поисковая строка, которая будет искаться в программах
+
+    CreateProgramRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          required:
+            - title
+            - description
+            - difficulty
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/BaseProgramRequest'
+                - type: object
+                  required: [title, description, difficulty, equipment]
+
+    CreateProgramResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    UpdateProgramRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/BaseProgramRequest'
+                - type: object
+                  required: [id]
+
+    UpdateProgramResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+
+    DeleteProgramRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - type: object
+                  required: [id]
+
+    DeleteProgramResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    SearchProgramRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            adFilter:
+              $ref: '#/components/schemas/SearchProgramsFilter'
+
+    SearchProgramResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          description: Список найденных объектов
+          properties:
+            data:
+              type: array
+              items:
+                allOf:
+                  - $ref: '#/components/schemas/EntityId'
+                  - $ref: '#/components/schemas/Program'
+
+
+    ReadProgramRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - type: object
+                  required: [id]
+
+    ReadProgramResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Program'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    CreateWorkoutRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          required:
+            - title
+            - description
+            - difficulty
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/BaseWorkoutRequest'
+                - type: object
+                  properties:
+                    content:
+                      allOf:
+                        - $ref: '#/components/schemas/WorkoutContent'
+                - type: object
+                  required: [title, description, equipment, content]
+
+    CreateWorkoutResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    UpdateWorkoutRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/BaseWorkoutRequest'
+                - type: object
+                  properties:
+                    content:
+                      allOf:
+                        - $ref: '#/components/schemas/WorkoutContent'
+                - type: object
+                  required: [id]
+
+    UpdateWorkoutResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    DeleteWorkoutRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+
+    DeleteWorkoutResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    ReadWorkoutRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+
+    ReadWorkoutResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - $ref: '#/components/schemas/Workout'
+                - type: object
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    CreateFeedbackRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FeedbackType'
+            id:
+              $ref: '#/components/schemas/EntityId'
+            userId:
+              $ref: '#/components/schemas/EntityId'
+            data:
+              oneOf:
+                - $ref: '#/components/schemas/ProgramFeedback'
+                - $ref: '#/components/schemas/WorkoutFeedback'
+
+    CreateFeedbackResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FeedbackType'
+            id:
+              $ref: '#/components/schemas/EntityId'
+            userId:
+              $ref: '#/components/schemas/EntityId'
+            data:
+              allOf:
+                - $ref: '#/components/schemas/EntityId'
+                - type: object
+                  oneOf:
+                    - $ref: '#/components/schemas/ProgramFeedback'
+                    - $ref: '#/components/schemas/WorkoutFeedback'
+                  properties:
+                    permissions:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        $ref: '#/components/schemas/Permissions'
+
+    ReadFeedbackRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/FeedbackType'
+                id:
+                  $ref: '#/components/schemas/EntityId'
+                userId:
+                  $ref: '#/components/schemas/EntityId'
+
+    ReadFeedbackResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FeedbackType'
+            id:
+              $ref: '#/components/schemas/EntityId'
+            data:
+              type: array
+              items:
+                allOf:
+                  - type: object
+                    properties:
+                      id:
+                        $ref: '#/components/schemas/EntityId'
+                      userId:
+                        $ref: '#/components/schemas/EntityId'
+                      permissions:
+                        type: array
+                        uniqueItems: true
+                        items:
+                          $ref: '#/components/schemas/Permissions'
+                  - type: object
+                    allOf:
+                      - $ref: '#/components/schemas/EntityId'
+                      - type: object
+                        oneOf:
+                          - $ref: '#/components/schemas/ProgramFeedback'
+                          - $ref: '#/components/schemas/WorkoutFeedback'
+
+    UpdateFeedbackRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/FeedbackType'
+                    id:
+                      $ref: '#/components/schemas/EntityId'
+                    userId:
+                      $ref: '#/components/schemas/EntityId'
+                - type: object
+                  oneOf:
+                    - $ref: '#/components/schemas/ProgramFeedback'
+                    - $ref: '#/components/schemas/WorkoutFeedback'
+
+
+    UpdateFeedbackResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FeedbackType'
+            id:
+              $ref: '#/components/schemas/EntityId'
+            data:
+              type: array
+              items:
+                allOf:
+                  - type: object
+                    properties:
+                      id:
+                        $ref: '#/components/schemas/EntityId'
+                      userId:
+                        $ref: '#/components/schemas/EntityId'
+                      permissions:
+                        type: array
+                        uniqueItems: true
+                        items:
+                          $ref: '#/components/schemas/Permissions'
+                  - type: object
+                    allOf:
+                      - $ref: '#/components/schemas/EntityId'
+                      - type: object
+                        oneOf:
+                          - $ref: '#/components/schemas/ProgramFeedback'
+                          - $ref: '#/components/schemas/WorkoutFeedback'
+
+    DeleteFeedbackRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - type: object
+                  properties:
+                    type:
+                      $ref: '#/components/schemas/FeedbackType'
+                    id:
+                      $ref: '#/components/schemas/EntityId'
+                    userId:
+                      $ref: '#/components/schemas/EntityId'
+
+    DeleteFeedbackResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/FeedbackType'
+            id:
+              $ref: '#/components/schemas/EntityId'
+            data:
+              type: array
+              items:
+                allOf:
+                  - type: object
+                    properties:
+                      id:
+                        $ref: '#/components/schemas/EntityId'
+                      userId:
+                        $ref: '#/components/schemas/EntityId'
+                      permissions:
+                        type: array
+                        uniqueItems: true
+                        items:
+                          $ref: '#/components/schemas/Permissions'
+                  - type: object
+                    allOf:
+                      - $ref: '#/components/schemas/EntityId'
+                      - type: object
+                        oneOf:
+                          - $ref: '#/components/schemas/ProgramFeedback'
+                          - $ref: '#/components/schemas/WorkoutFeedback'
+
+    # STUBS ======================
+    ProgramRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/ProgramDebug'
+
+    ProgramDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/ProgramRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/ProgramRequestDebugStubs'
+
+    ProgramRequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+        - badTitle
+        - badDescription
+        - cannotDelete
+        - badSearchString
